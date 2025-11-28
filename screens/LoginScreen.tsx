@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     Dimensions,
     Animated,
-    SafeAreaView,
     StatusBar,
     KeyboardAvoidingView,
     Platform,
@@ -15,12 +14,9 @@ import {
     Keyboard,
     ScrollView
 } from 'react-native';
-// Ensure you have installed: npx expo install @expo/vector-icons
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../App";
-
-type Props = NativeStackScreenProps<RootStackParamList, "Login">;
+import { useRouter } from 'expo-router'; // Use this, NOT useNavigation
 
 // --- THEME & COLORS ---
 const COLORS = {
@@ -184,10 +180,11 @@ const PrimaryButton = ({ title, onPress }: any) => {
 };
 
 // --- MAIN SCREEN ---
-export default function LoginScreen({ navigation }: Props) {
+export default function LoginScreen() {
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={styles.container}>
@@ -255,7 +252,8 @@ export default function LoginScreen({ navigation }: Props) {
                             <View style={{ flexDirection: "row" }}>
                                 <Text>Don’t have an account? </Text>
 
-                                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                                {/* This will now work correctly */}
+                                <TouchableOpacity onPress={() => router.push('/signup')}>
                                     <Text style={{ color: "green" }}>Sign Up</Text>
                                 </TouchableOpacity>
                             </View>

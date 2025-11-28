@@ -1,26 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    TouchableOpacity,
-    Dimensions,
     Animated,
-    SafeAreaView,
-    StatusBar,
+    Dimensions,
+    Keyboard,
     KeyboardAvoidingView,
     Platform,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
     TouchableWithoutFeedback,
-    Keyboard,
-    ScrollView
+    View
 } from 'react-native';
-// Ensure you have installed: npx expo install @expo/vector-icons
-import { MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../App";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-type Props = NativeStackScreenProps<RootStackParamList, "Signup">;
+
+import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 // --- THEME & COLORS ---
 const COLORS = {
@@ -184,10 +182,11 @@ const PrimaryButton = ({ title, onPress }: any) => {
 };
 
 // --- MAIN SCREEN ---
-export default function SignupScreen({ navigation }: Props) {
+export default function SignupScreen() {
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={styles.container}>
@@ -255,8 +254,9 @@ export default function SignupScreen({ navigation }: Props) {
                             <View style={{ flexDirection: "row" }}>
                                 <Text>I do have an account </Text>
 
-                                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-                                    <Text style={{ color: "green" }}>Log In</Text>
+                                {/* This will now work correctly */}
+                                <TouchableOpacity onPress={() => router.push('/login')}>
+                                    <Text style={{ color: "green" }}>Sign In</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
