@@ -184,6 +184,19 @@ export default function LoginScreen() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const handleLogin = () => {
+        // 1. (Optional) Add simple validation
+        if (!email || !password) {
+            console.warn("Please fill in all fields");
+            // You could use Alert.alert("Error", "Please fill in all fields") here
+            return;
+        }
+
+        console.log("Logging in...");
+
+        // 2. Navigate to Dashboard
+        router.replace('/(tabs)/dashboard');
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -229,7 +242,10 @@ export default function LoginScreen() {
 
                             {/* Login Button */}
                             <View style={{ marginTop: 24 }}>
-                                <PrimaryButton title="Log In" onPress={() => console.log("Login Pressed")} />
+                                <PrimaryButton
+                                    title="Log In"
+                                    onPress={handleLogin}
+                                />
                             </View>
 
                             {/* Divider */}

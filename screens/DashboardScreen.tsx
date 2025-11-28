@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   Dimensions,
   Animated,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Platform,
   KeyboardAvoidingView
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 // Ensure you have installed: npx expo install react-native-maps react-native-svg
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
 // Ensure you have installed: npx expo install @expo/vector-icons

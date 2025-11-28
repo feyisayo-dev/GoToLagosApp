@@ -255,7 +255,7 @@ export default function SignupScreen() {
                                 <Text>I do have an account </Text>
 
                                 {/* This will now work correctly */}
-                                <TouchableOpacity onPress={() => router.push('/login')}>
+                                <TouchableOpacity onPress={() => router.push('/')}>
                                     <Text style={{ color: "green" }}>Sign In</Text>
                                 </TouchableOpacity>
                             </View>
